@@ -141,7 +141,36 @@ $currentStatus = $statusMap[$order['status']];
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Invoice Actions Card -->
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header" style="background-color: #28a745; color: white;">
+                    <h5 style="margin: 0;">Hóa Đơn</h5>
+                </div>
+                <div class="card-body">
+                    <p style="color: #666; margin-bottom: 15px; font-size: 14px;">
+                        <i class="bi bi-info-circle"></i> Bạn có thể xem, in hoặc tải hóa đơn dưới dây.
+                    </p>
+                    <div style="display: grid; gap: 10px;">
+                        <a href="invoice.php?id=<?= $orderId ?>" class="btn btn-info" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border: none; border-radius: 4px; color: white; cursor: pointer; background-color: #17a2b8;">
+                            <i class="bi bi-eye"></i> Xem Hóa Đơn
+                        </a>
+                        <button onclick="window.open('invoice.php?id=<?= $orderId ?>', '_blank'); window.print();" class="btn btn-primary" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border: none; border-radius: 4px; color: white; cursor: pointer; background-color: #007bff;">
+                            <i class="bi bi-printer"></i> In Hóa Đơn
+                        </button>
+                        <button onclick="downloadInvoicePDF(<?= $orderId ?>)" class="btn btn-success" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border: none; border-radius: 4px; color: white; cursor: pointer; background-color: #28a745;">
+                            <i class="bi bi-download"></i> Tải PDF
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header" style="background-color: #28a745; color: white;">
                     <h5 style="margin: 0;">Thông Tin Giao Hàng</h5>
@@ -180,6 +209,18 @@ $currentStatus = $statusMap[$order['status']];
         </div>
     </div>
 </div>
+
+<script>
+function downloadInvoicePDF(orderId) {
+    // Mở hóa đơn và gọi hàm in
+    const invoiceWindow = window.open('invoice.php?id=' + orderId, '_blank');
+    invoiceWindow.addEventListener('load', function() {
+        setTimeout(() => {
+            invoiceWindow.print();
+        }, 500);
+    });
+}
+</script>
 
 <?php
 require_once('layouts/footer.php');
