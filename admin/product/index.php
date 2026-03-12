@@ -51,7 +51,7 @@ $products = executeResult($sql);
                                     <button class="btn btn-warning">Sửa</button></a>
                             </td>
                             <td style="width: 50px">
-                                <button onclick="deleteUser(' . $item['id'] . ')"
+                                <button onclick="deleteProduct(' . $item['id'] . ')"
                                     class="btn btn-danger">Xoá</button>
                             </td>
                         </tr>';
